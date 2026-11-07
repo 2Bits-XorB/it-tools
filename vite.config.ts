@@ -12,7 +12,7 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import markdown from 'vite-plugin-vue-markdown';
+
 import svgLoader from 'vite-svg-loader';
 import { configDefaults } from 'vitest/config';
 
@@ -48,14 +48,16 @@ export default defineConfig({
     }),
     Icons({ compiler: 'vue3' }),
     vue({
-      include: [/\.vue$/, /\.md$/],
+      include: [/\.vue$/],
     }),
     vueJsx(),
-    markdown(),
     svgLoader(),
     VitePWA({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
+      workbox: {
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
+      },
       manifest: {
         name: 'IT Tools',
         description: 'Aggregated set of useful tools for developers.',

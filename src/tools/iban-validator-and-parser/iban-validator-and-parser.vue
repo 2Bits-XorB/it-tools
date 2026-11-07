@@ -44,7 +44,7 @@ const ibanInfo = computed<CKeyValueListItems>(() => {
     },
     {
       label: 'IBAN friendly format',
-      value: friendlyFormatIBAN(iban),
+      value: friendlyFormatIBAN(iban) ?? '',
     },
   ];
 });
@@ -66,7 +66,7 @@ const ibanExamples = [
 
     <c-card title="Valid IBAN examples" mt-5>
       <div v-for="iban in ibanExamples" :key="iban">
-        <c-text-copyable :value="iban" font-mono :displayed-value="friendlyFormatIBAN(iban)" />
+        <c-text-copyable :value="iban" font-mono :displayed-value="friendlyFormatIBAN(iban) ?? undefined" />
       </div>
     </c-card>
   </div>
