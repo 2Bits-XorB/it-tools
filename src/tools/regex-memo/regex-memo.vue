@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { useThemeVars } from 'naive-ui';
-import Memo from './regex-memo.content.md';
+import MarkdownIt from 'markdown-it';
+import DOMPurify from 'dompurify';
+import memoRaw from './regex-memo.content.md?raw';
 
 const themeVars = useThemeVars();
+const md = new MarkdownIt();
+const rendered = computed(() => DOMPurify.sanitize(md.render(memoRaw)));
 </script>
 
 <template>
-  <div>
-    <Memo />
-  </div>
+  <div v-html="rendered" />
 </template>
 
 <style lang="less" scoped>

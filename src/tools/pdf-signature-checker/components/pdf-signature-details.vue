@@ -25,7 +25,7 @@ const certs = computed(() => signature.value.meta.certs.map((certificate, index)
 <template>
   <div flex flex-col gap-2>
     <c-table :data="certs" :headers="tableHeaders">
-      <template #validityPeriod="{ value }">
+      <template #validityPeriod="{ value }: { value: any }">
         <c-key-value-list
           :items="[{
             label: 'Not before',
@@ -37,7 +37,7 @@ const certs = computed(() => signature.value.meta.certs.map((certificate, index)
         />
       </template>
 
-      <template #issuedBy="{ value }">
+      <template #issuedBy="{ value }: { value: any }">
         <c-key-value-list
           :items="[{
             label: 'Common name',
@@ -61,7 +61,7 @@ const certs = computed(() => signature.value.meta.certs.map((certificate, index)
         />
       </template>
 
-      <template #issuedTo="{ value }">
+      <template #issuedTo="{ value }: { value: any }">
         <c-key-value-list
           :items="[{
             label: 'Common name',
@@ -85,7 +85,7 @@ const certs = computed(() => signature.value.meta.certs.map((certificate, index)
         />
       </template>
 
-      <template #pemCertificate="{ value }">
+      <template #pemCertificate="{ value }: { value: any }">
         <c-modal-value :value="value" label="View PEM cert">
           <template #value>
             <div break-all text-xs>
